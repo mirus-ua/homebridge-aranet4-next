@@ -81,6 +81,10 @@ export class Aranet4Device {
       await this.#peripheral.connectAsync();
     }
   }
+  
+  getBluetoothUUID() {
+  	return this.#peripheral.uuid;
+  }
 
   static async getAranet4Devices(logger: Logger, btReadyTimeout: number, btScanTimeout: number): Promise<Aranet4Device[]> {
     const devices: Aranet4Device[] = [];
