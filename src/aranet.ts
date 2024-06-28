@@ -2,7 +2,7 @@ import noble from '@abandonware/noble';
 import { TextDecoder } from 'util';
 import { Logger } from 'homebridge';
 
-const ARANET4_SERVICE = '0000fce0-0000-1000-8000-00805f9b34fb';
+const ARANET4_SERVICE = 'fce0';
 const ARANET4_CHARACTERISTICS = 'f0cd300195da4f4b9ac8aa55d312af0c';
 
 const MANUFACTURER_NAME = { name: 'org.bluetooth.characteristic.manufacturer_name_string', id: '2a29' };
@@ -87,7 +87,7 @@ export class Aranet4Device {
 
     await this.waitForBluetooth(logger, btReadyTimeout);
     logger.debug('Starting to scan...');
-    await noble.startScanningAsync([ARANET4_SERVICE], false);
+    await noble.startScanningAsync([], false);
 
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -99,6 +99,8 @@ export class Aranet4Device {
       }, btScanTimeout * 1000);
 
       noble.on('discover', async (peripheral) => {
+        var isAranet = peripheral.advertisement.localName && peripheral.advertisement.localName.includes("Aranet4");
+        if (!isAranet) { return }
         logger.debug('Found Aranet4 peripheral', peripheral.uuid);
         const device: Aranet4Device = new Aranet4Device(logger, peripheral, {
           manufacturer: 'DEFAULT_MANUFACTURER',
