@@ -2,7 +2,6 @@ import noble from '@abandonware/noble';
 import { TextDecoder } from 'util';
 import { Logger } from 'homebridge';
 
-const ARANET4_SERVICE = 'fce0';
 const ARANET4_CHARACTERISTICS = 'f0cd300195da4f4b9ac8aa55d312af0c';
 
 const MANUFACTURER_NAME = { name: 'org.bluetooth.characteristic.manufacturer_name_string', id: '2a29' };
@@ -164,7 +163,7 @@ export class Aranet4Device {
     this.logger.debug('Connected to Aranet4', this.#peripheral.uuid);
 
     const { characteristics } = await this.#peripheral.discoverSomeServicesAndCharacteristicsAsync(
-      [ARANET4_SERVICE], [ARANET4_CHARACTERISTICS],
+      [], [ARANET4_CHARACTERISTICS],
     );
     if (characteristics.length === 0) {
       Promise.reject(new Error('Could not find matching characteristic'));
