@@ -80,9 +80,9 @@ export class Aranet4Device {
       await this.#peripheral.connectAsync();
     }
   }
-  
+
   getBluetoothUUID() {
-  	return this.#peripheral.uuid;
+    return this.#peripheral.uuid;
   }
 
   static async getAranet4Devices(logger: Logger, btReadyTimeout: number, btScanTimeout: number): Promise<Aranet4Device[]> {
@@ -102,8 +102,10 @@ export class Aranet4Device {
       }, btScanTimeout * 1000);
 
       noble.on('discover', async (peripheral) => {
-        var isAranet = peripheral.advertisement.localName && peripheral.advertisement.localName.includes("Aranet4");
-        if (!isAranet) { return }
+        const isAranet = peripheral.advertisement.localName && peripheral.advertisement.localName.includes('Aranet4');
+        if (!isAranet) {
+          return;
+        }
         logger.debug('Found Aranet4 peripheral', peripheral.uuid);
         const device: Aranet4Device = new Aranet4Device(logger, peripheral, {
           manufacturer: 'DEFAULT_MANUFACTURER',
