@@ -6,14 +6,14 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/quentinms/homebridge-aranet4.git"
+    "url": "git://github.com/mirus-ua/homebridge-aranet4-next.git"
   },
   "bugs": {
-    "url": "https://github.com/quentinms/homebridge-aranet4/issues"
+    "url": "https://github.com/mirus-ua/homebridge-aranet4-next/issues"
   },
   "engines": {
     "node": "^18.17.0 || ^20.9.0 || ^22.11.0",
-    "homebridge": "^1.8.5"
+    "homebridge": "^1.8.5 || ^2.0.0-beta.0 || ^2.0.0"
   },
   "main": "dist/index.js",
   "scripts": {
@@ -29,11 +29,11 @@
     "@abandonware/noble": "^1.9.2-23"
   },
   "devDependencies": {
-    "@types/node": "^18.16.20",
+    "@types/node": "^22.15.18",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.45.0",
-    "homebridge": "^1.6.0",
+    "homebridge": "^2.0.0-beta.27",
     "nodemon": "^2.0.22",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",
